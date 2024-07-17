@@ -28,7 +28,7 @@ module FSM(
 
   
   assign addr_out[7:0] = idx[7:0];
-	assign addr_out[8] = bank;
+	assign addr_out[8] = read_bank;
 
 
 // change state process
@@ -102,6 +102,7 @@ always @(posedge clk or posedge reset) begin
 			// if memory has been completely read => disable reading
 			if((idx==200 && sending_pending == 1 && cpt == 0) || (idx==200 && sending_pending == 0)) begin
 				re <= 0;
+				read_bank <= ~read_bank;
 			end
 			else begin
 				re <= 1;
@@ -115,7 +116,7 @@ always @(posedge clk or posedge reset) begin
 			
 			//memorization ended => enable reading
 			if(bank0_full == 1 || bank1_full == 1 || sending_pending) begin	
-				read_bank <= ~read_bank;
+				
 				re <= 1;
 			end
 			else begin
