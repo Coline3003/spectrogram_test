@@ -2,13 +2,14 @@ module FSM(
 	input clk, reset, bank0_full, bank1_full, memorization_completed, 
 	input [7:0] idx_final, 
 	output [8:0] addr_out, 
+	output reg [2:0] state_reg,
 	output reg SL_ch, SL_time, selection_bit, re, serial_readout, sending_data
 	);
 
 
   
   reg [7:0] idx, reg_idx_final;
-  reg [2:0] state_reg, state_next;
+  reg [2:0] state_next;
   reg [4:0] cpt;
   reg signal_duration, sending_pending, read_bank, sending_started;
   localparam [2:0]
