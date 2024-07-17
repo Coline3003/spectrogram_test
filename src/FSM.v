@@ -182,7 +182,7 @@ always @(posedge sending_started or posedge reset) begin
 	if(reset) begin
       read_bank <= 1;  
 	end
-	else begin
+	else if(sending_started) begin
 		read_bank <= ~read_bank;
 	end
 end
