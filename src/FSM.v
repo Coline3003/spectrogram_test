@@ -28,7 +28,7 @@ module FSM(
 
   
   assign addr_out[7:0] = idx[7:0];
-	assign addr_out[8] = read_bank;
+	assign addr_out[8] = bank;
 
 
 // change state process
