@@ -43,12 +43,15 @@ always @(posedge clk or posedge reset) begin
        		idx <= 0;
 				bank0_full <= 0;
 				bank1_full <= 0;
+		if(signal_detected) begin
+			bank <= ~bank; //changing bank
+		end
       	end  
 			else if (state_reg == s2) begin 
        		idx <= 0;
 				bank0_full <= 0;
 				bank1_full <= 0;
-				bank <= ~bank; //changing bank
+				
       	end 
 			else if(state_reg == s1 && idx == 199) begin //bank full
 				idx <= 0;
