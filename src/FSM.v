@@ -28,7 +28,7 @@ module FSM(
 
   
   assign addr_out[7:0] = idx[7:0];
-  assign addr_out[8] = ~bank;
+	assign addr_out[8] = read_bank;
 
 
 // change state process
@@ -53,6 +53,7 @@ always @(posedge clk or posedge reset) begin
 		cpt <= 0;
 		idx <= 0;
 		sending_data <= 0;
+		read_bank <= 1; 
 	end
 	else begin
 	case (state_reg)
@@ -65,7 +66,9 @@ always @(posedge clk or posedge reset) begin
 		s1 : begin //load of RTC
 			cpt <= 0;
 			idx <= 0;
-			sending_data <= 1;
+			sending_data <= 1;	
+			read_bank <= ~read_bank;
+	
 		end
 		s2 : begin //shift of RTC
 			idx <= 0;
@@ -111,7 +114,8 @@ always @(posedge clk or posedge reset) begin
 			sending_data <= 0;
 			
 			//memorization ended => enable reading
-			if(bank0_full == 1 || bank1_full == 1 || sending_pending) begin
+			if(bank0_full == 1 || bank1_full == 1 || sending_pending) begin	
+				read_bank <= ~read_bank;
 				re <= 1;
 			end
 			else begin
@@ -176,7 +180,7 @@ always @(posedge clk or posedge reset) begin
 		end
 	end                                                                   
 end
-
+/*
 //asynchonous process for changing bank, when a sending starts => changing the bank to read into
 always @(posedge sending_started or posedge reset) begin
 	if(reset) begin
@@ -186,7 +190,7 @@ always @(posedge sending_started or posedge reset) begin
 		read_bank <= ~read_bank;
 	end
 end
-
+*/
 
 //combinatory outputs of the state machine
 //sending_started => pulse when we start to read memory 
