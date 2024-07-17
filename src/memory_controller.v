@@ -32,7 +32,7 @@ end
 always @(posedge clk or posedge reset) begin
 		if(reset) begin
 			idx <= 0;
-			bank <= 0;
+			bank <= 1;
 			bank0_full <= 0;
 			bank1_full <= 0;
 			idx_final <= 0;
