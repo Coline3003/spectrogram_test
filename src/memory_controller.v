@@ -3,7 +3,7 @@ module memory_controller(
     output reg [7:0] idx_final,
 	 output  [8:0] addr_in,
 	 output reg [1:0] state_reg,
-    output reg we, bank0_full, bank1_full, memorization_completed   
+    output reg we, bank0_full, bank1_full, memorization_completed, bank  
 );
 
 
@@ -14,7 +14,7 @@ module memory_controller(
 
   reg [1:0]  state_next;
   reg [7:0] idx;
-  reg bank;
+ 
   assign addr_in[7:0] = idx[7:0];
   assign addr_in[8] = bank;
 
