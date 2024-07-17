@@ -31,7 +31,7 @@ module tt_um_Coline3003_top(
 	     .sending_data(uo_out[7]));
 	
 	assign uo_out[1] = 0;
-	assign uio_in[6:0] = 7'b0;
+	
 	assign uio_out[7] = 0;
     assign uio_oe = 8'b11111110; //inputs enable
 endmodule // top
