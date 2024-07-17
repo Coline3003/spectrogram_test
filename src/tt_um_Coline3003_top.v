@@ -22,7 +22,7 @@ module tt_um_Coline3003_top(
 	     .sending_started(uio_out[4]),
 	     .read_bank(uio_out[5]),
 	     .write_bank(uio_out[6]),
-	     .serial_out(uo_out[0]}), 
+	     .serial_out(uo_out[0]), 
 	     .SL_time(uo_out[2]), 
 	     .SL_ch(uo_out[3]), 
 	     .signal_detected(uo_out[4]), 
