@@ -17,8 +17,12 @@ module tt_um_Coline3003_top(
 	     .RTC_clk(ui_in[7]), 
 	     .input_serial_readout_clk(uio_in[7]), 
 	     .ch1({ui_in[6],ui_in[5],ui_in[4],ui_in[3],ui_in[2],ui_in[1],ui_in[0]}), 
-	     .ch2({uio_in[6],uio_in[5],uio_in[4],uio_in[3],uio_in[2],uio_in[1],uio_in[0]}), 
-	     .serial_out({uo_out[1],uo_out[0]}), 
+	     .state_reg_FSM({uio_out[2], uio_out[1], uio_out[0]}),
+	     .sending_pending(uio_out[3]),
+	     .sending_started(uio_out[4]),
+	     .read_bank(uio_out[5]),
+	     .write_bank(uio_out[6]),
+	     .serial_out(uo_out[0]}), 
 	     .SL_time(uo_out[2]), 
 	     .SL_ch(uo_out[3]), 
 	     .signal_detected(uo_out[4]), 
@@ -26,6 +30,6 @@ module tt_um_Coline3003_top(
 	     .serial_readout(uo_out[6]), 
 	     .sending_data(uo_out[7]));
 	
-    assign uio_out = 8'b0;
-    assign uio_oe = 8'b0; //inputs enable
+
+    assign uio_oe = 8'b11111110; //inputs enable
 endmodule // top
