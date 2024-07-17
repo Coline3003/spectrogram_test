@@ -1,5 +1,5 @@
 module FSM(
-	input clk, reset, bank0_full, bank1_full, memorization_completed, 
+	input clk, reset, bank0_full, bank1_full, memorization_completed, bank,
 	input [7:0] idx_final, 
 	output [8:0] addr_out, 
 	output reg [2:0] state_reg,
@@ -28,7 +28,7 @@ module FSM(
 
   
   assign addr_out[7:0] = idx[7:0];
-  assign addr_out[8] = read_bank;
+  assign addr_out[8] = ~bank;
 
 
 // change state process
